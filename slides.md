@@ -1,635 +1,684 @@
 ---
-# try also 'default' to start simple
-theme: seriph
-# random image from a curated Unsplash collection by Anthony
-# like them? see https://unsplash.com/collections/94734566/slidev
-background: https://cover.sli.dev
-# some information about your slides (markdown enabled)
-title: Welcome to Slidev
-info: |
-  ## Slidev Starter Template
-  Presentation slides for developers.
-
-  Learn more at [Sli.dev](https://sli.dev)
-# apply UnoCSS classes to the current slide
-class: text-center
-# https://sli.dev/features/drawing
-drawings:
-  persist: false
-# slide transition: https://sli.dev/guide/animations.html#slide-transitions
-transition: slide-left
-# enable MDC Syntax: https://sli.dev/features/mdc
-mdc: true
----
-
-# Welcome to Slidev
-
-Presentation slides for developers
-
-<div @click="$slidev.nav.next" class="mt-12 py-1" hover:bg="white op-10">
-  Press Space for next page <carbon:arrow-right />
-</div>
-
-<div class="abs-br m-6 text-xl">
-  <button @click="$slidev.nav.openInEditor()" title="Open in Editor" class="slidev-icon-btn">
-    <carbon:edit />
-  </button>
-  <a href="https://github.com/slidevjs/slidev" target="_blank" class="slidev-icon-btn">
-    <carbon:logo-github />
-  </a>
-</div>
-
-<!--
-The last comment block of each slide will be treated as slide notes. It will be visible and editable in Presenter Mode along with the slide. [Read more in the docs](https://sli.dev/guide/syntax.html#notes)
--->
-
----
+layout: center
+highlighter: shiki
+css: unocss
+colorSchema: dark
 transition: fade-out
+mdc: true
+glowSeed: 4
+title: Make Tools That People Love
+remoteAssets: true
+addons:
+  - slidev-addon-graph
 ---
 
-# What is Slidev?
-
-Slidev is a slides maker and presenter designed for developers, consist of the following features
-
-- 📝 **Text-based** - focus on the content with Markdown, and then style them later
-- 🎨 **Themable** - themes can be shared and re-used as npm packages
-- 🧑‍💻 **Developer Friendly** - code highlighting, live coding with autocompletion
-- 🤹 **Interactive** - embed Vue components to enhance your expressions
-- 🎥 **Recording** - built-in recording and camera view
-- 📤 **Portable** - export to PDF, PPTX, PNGs, or even a hostable SPA
-- 🛠 **Hackable** - virtually anything that's possible on a webpage is possible in Slidev
-<br>
-<br>
-
-Read more about [Why Slidev?](https://sli.dev/guide/why)
+![](/af-logo-animated.svg){.w-30.mt--10.mb-5}
 
 <!--
-You can have `style` tag in markdown to override the style for the current page.
-Learn more: https://sli.dev/features/slide-scope-style
--->
+Good morning everyone! How are you doing?
 
-<style>
-h1 {
-  background-color: #2B90B6;
-  background-image: linear-gradient(45deg, #4EC5D4 10%, #146b8c 20%);
-  background-size: 100%;
-  -webkit-background-clip: text;
-  -moz-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  -moz-text-fill-color: transparent;
-}
-</style>
-
-<!--
-Here is another comment.
+It's my great honor to be here giving the talk and meeting you all.
 -->
 
 ---
-transition: slide-up
-level: 2
+layout: intro
+class: pl-25
+glowSeed: 14
 ---
 
-# Navigation
+<h1 font-serif>Anthony Fu</h1>
 
-Hover on the bottom-left corner to see the navigation's controls panel, [learn more](https://sli.dev/guide/ui#navigation-bar)
+<div class="[&>*]:important-leading-10 opacity-80">
 
-## Keyboard Shortcuts
-
-|                                                     |                             |
-| --------------------------------------------------- | --------------------------- |
-| <kbd>right</kbd> / <kbd>space</kbd>                 | next animation or slide     |
-| <kbd>left</kbd>  / <kbd>shift</kbd><kbd>space</kbd> | previous animation or slide |
-| <kbd>up</kbd>                                       | previous slide              |
-| <kbd>down</kbd>                                     | next slide                  |
-
-<!-- https://sli.dev/guide/animations.html#click-animation -->
-<img
-  v-click
-  class="absolute -bottom-9 -left-7 w-80 opacity-50"
-  src="https://sli.dev/assets/arrow-bottom-left.svg"
-  alt=""
-/>
-<p v-after class="absolute bottom-23 left-45 opacity-30 transform -rotate-10">Here!</p>
-
----
-layout: two-cols
-layoutClass: gap-16
----
-
-# Table of contents
-
-You can use the `Toc` component to generate a table of contents for your slides:
-
-```html
-<Toc minDepth="1" maxDepth="1" />
-```
-
-The title will be inferred from your slide content, or you can override it with `title` and `level` in your frontmatter.
-
-::right::
-
-<Toc text-sm minDepth="1" maxDepth="2" />
-
----
-layout: image-right
-image: https://cover.sli.dev
----
-
-# Code
-
-Use code snippets and get the highlighting directly, and even types hover!
-
-```ts [filename-example.ts] {all|4|6|6-7|9|all} twoslash
-// TwoSlash enables TypeScript hover information
-// and errors in markdown code blocks
-// More at https://shiki.style/packages/twoslash
-import { computed, ref } from 'vue'
-
-const count = ref(0)
-const doubled = computed(() => count.value * 2)
-
-doubled.value = 2
-```
-
-<arrow v-click="[4, 5]" x1="350" y1="310" x2="195" y2="342" color="#953" width="2" arrowSize="1" />
-
-<!-- This allow you to embed external code blocks -->
-<<< @/snippets/external.ts#snippet
-
-<!-- Footer -->
-
-[Learn more](https://sli.dev/features/line-highlighting)
-
-<!-- Inline style -->
-<style>
-.footnotes-sep {
-  @apply mt-5 opacity-10;
-}
-.footnotes {
-  @apply text-sm opacity-75;
-}
-.footnote-backref {
-  display: none;
-}
-</style>
-
-<!--
-Notes can also sync with clicks
-
-[click] This will be highlighted after the first click
-
-[click] Highlighted with `count = ref(0)`
-
-[click:3] Last click (skip two clicks)
--->
-
----
-level: 2
----
-
-# Shiki Magic Move
-
-Powered by [shiki-magic-move](https://shiki-magic-move.netlify.app/), Slidev supports animations across multiple code snippets.
-
-Add multiple code blocks and wrap them with <code>````md magic-move</code> (four backticks) to enable the magic move. For example:
-
-````md magic-move {lines: true}
-```ts {*|2|*}
-// step 1
-const author = reactive({
-  name: 'John Doe',
-  books: [
-    'Vue 2 - Advanced Guide',
-    'Vue 3 - Basic Guide',
-    'Vue 4 - The Mystery'
-  ]
-})
-```
-
-```ts {*|1-2|3-4|3-4,8}
-// step 2
-export default {
-  data() {
-    return {
-      author: {
-        name: 'John Doe',
-        books: [
-          'Vue 2 - Advanced Guide',
-          'Vue 3 - Basic Guide',
-          'Vue 4 - The Mystery'
-        ]
-      }
-    }
-  }
-}
-```
-
-```ts
-// step 3
-export default {
-  data: () => ({
-    author: {
-      name: 'John Doe',
-      books: [
-        'Vue 2 - Advanced Guide',
-        'Vue 3 - Basic Guide',
-        'Vue 4 - The Mystery'
-      ]
-    }
-  })
-}
-```
-
-Non-code blocks are ignored.
-
-```vue
-<!-- step 4 -->
-<script setup>
-const author = {
-  name: 'John Doe',
-  books: [
-    'Vue 2 - Advanced Guide',
-    'Vue 3 - Basic Guide',
-    'Vue 4 - The Mystery'
-  ]
-}
-</script>
-```
-````
-
----
-
-# Components
-
-<div grid="~ cols-2 gap-4">
-<div>
-
-You can use Vue components directly inside your slides.
-
-We have provided a few built-in components like `<Tweet/>` and `<Youtube/>` that you can use directly. And adding your custom components is also super easy.
-
-```html
-<Counter :count="10" />
-```
-
-<!-- ./components/Counter.vue -->
-<Counter :count="10" m="t-4" />
-
-Check out [the guides](https://sli.dev/builtin/components.html) for more.
-
-</div>
-<div>
-
-```html
-<Tweet id="1390115482657726468" />
-```
-
-<Tweet id="1390115482657726468" scale="0.65" />
-
-</div>
-</div>
-
-<!--
-Presenter note with **bold**, *italic*, and ~~striked~~ text.
-
-Also, HTML elements are valid:
-<div class="flex w-full">
-  <span style="flex-grow: 1;">Left content</span>
-  <span>Right content</span>
-</div>
--->
-
----
-class: px-20
----
-
-# Themes
-
-Slidev comes with powerful theming support. Themes can provide styles, layouts, components, or even configurations for tools. Switching between themes by just **one edit** in your frontmatter:
-
-<div grid="~ cols-2 gap-2" m="t-2">
-
-```yaml
----
-theme: default
----
-```
-
-```yaml
----
-theme: seriph
----
-```
-
-<img border="rounded" src="https://github.com/slidevjs/themes/blob/main/screenshots/theme-default/01.png?raw=true" alt="">
-
-<img border="rounded" src="https://github.com/slidevjs/themes/blob/main/screenshots/theme-seriph/01.png?raw=true" alt="">
+Core team member of {Vite} {Vue} and {Nuxt}<br>
+Creator of {Vitest} {Slidev} {UnoCSS} {Type Challenges} {Elk}<br>
+Maintainer of {ESLint Stylistic} {Shiki} {Twoslash}<br>
+Working at {NuxtLabs} / {Vercel}<br>
+Base in 🇯🇵 Tokyo
 
 </div>
 
-Read more about [How to use a theme](https://sli.dev/guide/theme-addon#use-theme) and
-check out the [Awesome Themes Gallery](https://sli.dev/resources/theme-gallery).
+<div mt-10 w-min flex="~ gap-1" items-center justify-center>
+  <div i-ri-user-3-line op50 ma text-xl />
+  <div><a href="https://antfu.me" target="_blank" class="border-none! font-300">antfu.me</a></div>
+  <div i-ri-github-line op50 ma text-xl ml4/>
+  <div><a href="https://github.com/antfu" target="_blank" class="border-none! font-300">antfu</a></div>
+  <div i-ri-mastodon-line op50 ma text-xl ml4 />
+  <div><a href="https://m.webtoo.ls/@antfu" target="_blank" class="border-none! font-300">antfu@webtoo.ls</a></div>
+  <div i-ri-twitter-x-line op50 ma text-xl ml4/>
+  <div><a href="https://twitter.com/antfu7" target="_blank" class="border-none! font-300">antfu7</a></div>
+</div>
+
+<img src="https://antfu.me/avatar.png" rounded-full absolute top-38 right-15 w-40 />
+
 
 ---
-
-# Clicks Animations
-
-You can add `v-click` to elements to add a click animation.
-
-<div v-click>
-
-This shows up when you click the slide:
-
-```html
-<div v-click>This shows up when you click the slide.</div>
-```
-
-</div>
-
-<br>
-
-<v-click>
-
-The <span v-mark.red="3"><code>v-mark</code> directive</span>
-also allows you to add
-<span v-mark.circle.orange="4">inline marks</span>
-, powered by [Rough Notation](https://roughnotation.com/):
-
-```html
-<span v-mark.underline.orange>inline markers</span>
-```
-
-</v-click>
-
-<div mt-20 v-click>
-
-[Learn more](https://sli.dev/guide/animations#click-animation)
-
-</div>
-
+clicks: 7
+zoom: 0.75
+layout: none
+class: 'flex h-full w-full'
+glow: topmost
+glowSeed: 18
 ---
 
-# Motions
+<RenderWhen context="visible">
+  <YakMap />
+</RenderWhen>
 
-Motion animations are powered by [@vueuse/motion](https://motion.vueuse.org/), triggered by `v-motion` directive.
-
-```html
-<div
-  v-motion
-  :initial="{ x: -80 }"
-  :enter="{ x: 0 }"
-  :click-3="{ x: 80 }"
-  :leave="{ x: 1000 }"
->
-  Slidev
-</div>
-```
-
-<div class="w-60 relative">
-  <div class="relative w-40 h-40">
-    <img
-      v-motion
-      :initial="{ x: 800, y: -100, scale: 1.5, rotate: -50 }"
-      :enter="final"
-      class="absolute inset-0"
-      src="https://sli.dev/logo-square.png"
-      alt=""
-    />
-    <img
-      v-motion
-      :initial="{ y: 500, x: -100, scale: 2 }"
-      :enter="final"
-      class="absolute inset-0"
-      src="https://sli.dev/logo-circle.png"
-      alt=""
-    />
-    <img
-      v-motion
-      :initial="{ x: 600, y: 400, scale: 2, rotate: 100 }"
-      :enter="final"
-      class="absolute inset-0"
-      src="https://sli.dev/logo-triangle.png"
-      alt=""
-    />
+<div flex="~ items-center gap-3" fixed right-0 top-0 rounded-bl-2rem p5 backdrop-blur-md>
+  <div text-5xl>
+    🐃
   </div>
-
-  <div
-    class="text-5xl absolute top-14 left-40 text-[#2B90B6] -z-1"
-    v-motion
-    :initial="{ x: -80, opacity: 0}"
-    :enter="{ x: 0, opacity: 1, transition: { delay: 2000, duration: 1000 } }">
-    Slidev
+  <div flex="~ col">
+    <a href="https://antfu.me" text-sm op50 hover:underline target="_blank">Anthony Fu's</a>
+    <a text-2xl href="https://github.com/antfu/yak-shaving-map" target="_blank" hover:underline>
+      Yak Map
+    </a>
   </div>
 </div>
 
-<!-- vue script setup scripts can be directly used in markdown, and will only affects current page -->
-<script setup lang="ts">
-const final = {
-  x: 0,
-  y: 0,
-  rotate: 0,
-  scale: 1,
-  transition: {
-    type: 'spring',
-    damping: 10,
-    stiffness: 20,
-    mass: 2
-  }
-}
-</script>
+<!--
+For a little bit more about my story, I started my journey in Open Source with a personal project called BreadSplit in college.
 
-<div
-  v-motion
-  :initial="{ x:35, y: 30, opacity: 0}"
-  :enter="{ y: 0, opacity: 1, transition: { delay: 3500 } }">
+[click] From that, I created a VS Code extension called i18n-ally and then made VueUse, the utilities library for Vue. Since then, I've started contributing much more to open source projects, [click] like Vue and Vite. I've built tools like [click] Slidev, joined [click] the Nuxt team, and then created [click] Vitest, etc. And I kinda ended up with [click] probably too many projects.
 
-[Learn more](https://sli.dev/guide/animations.html#motion)
+This is the graph I made to show the relationships of the projects I worked on. [click] Perhaps some of you are already familiar with or have used some of those projects. What I want to say is that I feel extremely lucky to be able to work on these projects, make them useful for the community, and eventually get this great opportunity to stand here and give this talk to you.
+-->
 
+---
+layout: cover
+---
+
+# Make Tools People Love {.font-400!.font-serif!}
+
+<div text-2xl mt--1 op50>From Anthony's Experience on Open Source</div>
+
+<div abs-br mx-10 my-12 flex="~ col" text-sm text-right>
+  <img src="/logo-squiggleconf.png" h-10 alt="SquiggleConf" />
+  <div text-sm opacity-50>Sep. 18th 2025</div>
 </div>
 
----
+<!--
+So, for today's topic, although I might be a bit overreaching to take this ambitious topic, I'd like to share with you my experience and thoughts on how we could make tools that people love.
 
-# LaTeX
-
-LaTeX is supported out-of-box. Powered by [KaTeX](https://katex.org/).
-
-<div h-3 />
-
-Inline $\sqrt{3x-1}+(1+x)^2$
-
-Block
-$$ {1|3|all}
-\begin{aligned}
-\nabla \cdot \vec{E} &= \frac{\rho}{\varepsilon_0} \\
-\nabla \cdot \vec{B} &= 0 \\
-\nabla \times \vec{E} &= -\frac{\partial\vec{B}}{\partial t} \\
-\nabla \times \vec{B} &= \mu_0\vec{J} + \mu_0\varepsilon_0\frac{\partial\vec{E}}{\partial t}
-\end{aligned}
-$$
-
-[Learn more](https://sli.dev/features/latex)
-
----
-
-# Diagrams
-
-You can create diagrams / graphs from textual descriptions, directly in your Markdown.
-
-<div class="grid grid-cols-4 gap-5 pt-4 -mb-6">
-
-```mermaid {scale: 0.5, alt: 'A simple sequence diagram'}
-sequenceDiagram
-    Alice->John: Hello John, how are you?
-    Note over Alice,John: A typical interaction
-```
-
-```mermaid {theme: 'neutral', scale: 0.8}
-graph TD
-B[Text] --> C{Decision}
-C -->|One| D[Result 1]
-C -->|Two| E[Result 2]
-```
-
-```mermaid
-mindmap
-  root((mindmap))
-    Origins
-      Long history
-      ::icon(fa fa-book)
-      Popularisation
-        British popular psychology author Tony Buzan
-    Research
-      On effectiveness<br/>and features
-      On Automatic creation
-        Uses
-            Creative techniques
-            Strategic planning
-            Argument mapping
-    Tools
-      Pen and paper
-      Mermaid
-```
-
-```plantuml {scale: 0.7}
-@startuml
-
-package "Some Group" {
-  HTTP - [First Component]
-  [Another Component]
-}
-
-node "Other Groups" {
-  FTP - [Second Component]
-  [First Component] --> FTP
-}
-
-cloud {
-  [Example 1]
-}
-
-database "MySql" {
-  folder "This is my folder" {
-    [Folder 3]
-  }
-  frame "Foo" {
-    [Frame 4]
-  }
-}
-
-[Another Component] --> [Example 1]
-[Example 1] --> [Folder 3]
-[Folder 3] --> [Frame 4]
-
-@enduml
-```
-
-</div>
-
-Learn more: [Mermaid Diagrams](https://sli.dev/features/mermaid) and [PlantUML Diagrams](https://sli.dev/features/plantuml)
-
----
-foo: bar
-dragPos:
-  square: 691,32,167,_,-16
----
-
-# Draggable Elements
-
-Double-click on the draggable elements to edit their positions.
-
-<br>
-
-###### Directive Usage
-
-```md
-<img v-drag="'square'" src="https://sli.dev/logo.png">
-```
-
-<br>
-
-###### Component Usage
-
-```md
-<v-drag text-3xl>
-  <div class="i-carbon:arrow-up" />
-  Use the `v-drag` component to have a draggable container!
-</v-drag>
-```
-
-<v-drag pos="663,206,261,_,-15">
-  <div text-center text-3xl border border-main rounded>
-    Double-click me!
-  </div>
-</v-drag>
-
-<img v-drag="'square'" src="https://sli.dev/logo.png">
-
-###### Draggable Arrow
-
-```md
-<v-drag-arrow two-way />
-```
-
-<v-drag-arrow pos="67,452,253,46" two-way op70 />
-
----
-src: ./pages/imported-slides.md
-hide: false
----
-
----
-
-# Monaco Editor
-
-Slidev provides built-in Monaco Editor support.
-
-Add `{monaco}` to the code block to turn it into an editor:
-
-```ts {monaco}
-import { ref } from 'vue'
-import { emptyArray } from './external'
-
-const arr = ref(emptyArray(10))
-```
-
-Use `{monaco-run}` to create an editor that can execute the code directly in the slide:
-
-```ts {monaco-run}
-import { version } from 'vue'
-import { emptyArray, sayHello } from './external'
-
-sayHello()
-console.log(`vue ${version}`)
-console.log(emptyArray<number>(10).reduce(fib => [...fib, fib.at(-1)! + fib.at(-2)!], [1, 1]))
-```
+I hope it can give you some insights or inspiration on your own journey.
+-->
 
 ---
 layout: center
-class: text-center
+class: 'text-center'
 ---
 
-# Learn More
+<TipTitle title="I Don't Know" number="1" description="We can't Know without Trying" />
 
-[Documentation](https://sli.dev) · [GitHub](https://github.com/slidevjs/slidev) · [Showcases](https://sli.dev/resources/showcases)
+<!--
+So, let's dive straight into the topic. When it comes to making tools that people love, the very first tip I would give is - [click] I don't know. (pause)
 
-<PoweredBySlidev mt-10 />
+Well, I mean, I really don't know. We genuinely don't know.
+
+There's no such thing as "10 tips to success," and there's no formula to guarantee that we can definitely make people love our tools.
+
+[click] What we have to do is try and error, work with the community, hear their feedback, verify, evaluate, and iterate.
+-->
+
+---
+class: 'text-center h-full'
+---
+
+<div grid="~ rows-3 gap-2" h-full py20>
+  <div ma text-2em font-serif v-click>Try & Error</div>
+  <div ma text-2em font-serif v-click>Lower Your Expectations</div>
+  <div ma text-2em font-serif v-click>Verify with the Community</div>
+</div>
+
+<!--
+The real tip [click] I would emphasize here is to try more and don't be afraid to fail.
+
+Even though I've made quite a lot of tools people use, I actually have way more tools that were discontinued or didn't work out.
+
+And that's totally fine for me as I consider them as a learning and experimenting process.
+
+[click] For that, I would also say, don't set too high expectations. It's easy for us to get excited about the idea we are working on, but they might not necessarily be the best fit for the community.
+
+[click] Then I would suggest establishing a mechanism to verify your idea with the community. Then we can know where to improve and iterate.
+
+So for the following tips, I'll share some practical tips that I learned from my own experience.
+-->
+
+---
+layout: center
+class: 'text-center'
+---
+
+<TipTitle 
+  title="Solve Your Own Problems"
+  description="Build from your own pain points. Eat your own dogfood."
+  number="2" 
+/>
+
+<!--
+The second tip I would give is to [click] solve your own problems first. You should be your first user of your tool, or you should be the reason why you made the tool in the first place.
+
+[click] Build from your own pain points and eat your own dogfood.
+-->
+
+---
+glowSeed: 10
+---
+
+# Build from your own pain points. {.font-serif}
+
+<div v-click op75 mt1 text-sm>It can be a great way to come up with ideas and provide strong motivation</div>
+
+<div flex="~ col gap-4" py4>
+
+<span v-click>
+  <div flex="~ inline" text-blue font-bold font-serif>Demand</div><br>
+  <span text-blue2>Start from your own needs, with a deeper <br>understanding of the problem</span>
+</span>
+<span v-click>
+  <div flex="~ inline" text-rose font-bold font-serif>Motivation</div><br>
+  <span text-rose2>Solve your own problems, and maybe help others</span>
+</span>
+<span v-click>
+  <div flex="~ inline" text-yellow font-bold font-serif>Validation</div><br>
+  <span text-yellow1>Your needs are likely to be others' needs,<br>validate your ideas through the community</span>
+</span>
+<span v-click>
+  <div flex="~ inline" text-green font-bold font-serif>Iterating</div><br>
+  <span text-green2>Refine the design with discussion and <br>contributions from community</span>
+</span>
+
+</div>
+
+<div absolute left-150 top-20>
+  <div
+    absolute w-50 h-50 left-0 top-28 border="~ blue rounded-full"
+    bg-blue:20 text-xl text-blue flex="~ items-center justify-center"
+    v-click="2"
+  >
+    <div :class="{pr15: $clicks>2, pt8: $clicks>3}" transition-all duration-400 text-center>Your<br>Strength</div>
+  </div>
+  <div
+    absolute w-50 h-50 left-34 top-28 border="~ rose rounded-full"
+    bg-rose:20 text-xl text-rose flex="~ items-center justify-center"
+    v-click="3"
+  >
+    <div pl15 :class="{pt8: $clicks>3}" transition-all duration-400 text-center>Your<br>Passion</div>
+  </div>
+  <div
+    absolute w-50 h-50 left-17 top-0 border="~ amber rounded-full"
+    bg-amber:20 text-xl text-amber flex="~ items-center justify-center"
+    v-click="4"
+  >
+    <div pb10 text-center>Community<br>Needs</div>
+  </div>
+  <Arrow v-click="5" x1="160" y1="340" x2="170" y2="175" color-green  />
+  <div
+    v-click="5"
+    absolute top-85 left-10 ws-nowrap
+    border="~ green rounded-12px" px3 py1
+    bg-green:20 text-lg text-green text-center
+  >Practical and<br>Sustainable Projects</div>
+</div>
+
+<!--
+I'd say that building from your own pain points is [click] a great way to come up with ideas and provide you with strong motivation to work on it.
+
+[click] From the perspective of needs, because it comes from the problems we encounter ourselves, starting from our own needs allows us to have a deeper understanding of the problem and potential solutions.
+
+[click] And our motivation comes from solving our own problems, with the possibility that it might also help others.
+
+[click] Furthermore, our needs are likely to be shared by others, and we can validate our ideas with the community.
+
+[click] Finally, through community discussions and contributions, we can iterate on our designs and improve our solutions to serve even broader scenarios.
+
+By doing so, we can gather the essential elements for the continuous development of projects - what we are skilled at and enjoy, and what the community needs.
+
+Hopefully this can help to make the project practical and sustainable. 
+-->
+
+---
+layout: center
+class: 'text-center'
+---
+
+<TipTitle
+  title="Progressive!"
+  description="Reduce the friction."
+  number="3"
+/>
+
+<!--
+Then the third tip I would give is to be [click] progressive.
+
+[click] Progressive means we should reduce the friction for people to onboard and use our tools.
+
+It's meaningless to craft a great tool that no one knows how to use, right?
+-->
+
+---
+glow: right
+---
+
+# Progressive On {.font-serif}
+
+<div grid="~ cols-[max-content_1fr] gap-4 gap-y-8" pt10 ml10>
+
+<div text-1.2em text-white:50 text-right v-click>
+  <span flex="inline gap-1 items-center" text-lime font-serif><div i-ph-book-bookmark-duotone />Onboarding</span>
+</div>
+<div>
+  <div text-1.2em flex="~ gap-2 items-center" text-lime2 v-click>
+    Making it easy to understand and get started
+  </div>
+  <div op75 v-click>Describe your tool clearly within one sentence</div>
+</div>
+
+<div text-1.2em text-white:50 text-right v-click>
+  <span flex="inline gap-1 items-center" text-yellow font-serif><div i-ph-lightbulb-filament-duotone />Features</span>
+</div>
+<div>
+  <div text-1.2em flex="~ gap-2 items-center" text-yellow2 v-click>
+    Starts minimal and grows with users
+  </div>
+  <div op75 v-click>Make your tool useful even in the simplest case</div>
+</div>
+
+<div text-1.2em text-white:50 text-right v-click>
+  <span flex="inline gap-1 items-center" text-purple font-serif><div i-ph-puzzle-piece-duotone />Extensible</span>
+</div>
+<div>
+  <div text-1.2em flex="~ gap-2 items-center" text-purple2 v-click>
+    Allows community to enhance the tool and the ecosystem
+  </div>
+  <div op75 v-click>Make a plugin system for your tool</div>
+</div>
+
+<div text-1.2em text-white:50 text-right v-click>
+  <span flex="inline gap-1 items-center" text-rose font-serif><div i-ph-warning-octagon-duotone />Breaking Changes</span>
+</div>
+<div>
+  <div text-1.2em flex="~ gap-2 items-center" text-rose2 v-click>
+    Provide middle stages for migration
+  </div>
+  <div op75 v-click>Deprecate & Warning → Forward/Backward Compatibility → Remove</div>
+</div>
+
+</div>
+
+<!--
+Specifically, I think we should be progressive on the following aspects:
+
+[click] The first would be onboarding, [click] we should make it easy to understand and get started. [click] The tip I would give is to see if you can describe your tool clearly within one sentence. If you can't, you might have made the tool too complicated.
+
+[click] Then we should be progressive on features, [click] start minimal and grow with users. [click] We should make the tool useful even in the simplest cases. For example, Vite can start with a single `index.html` file and no more. Nuxt can start with a single `app.vue` file, etc. It's easy to pack as many features as possible into our tool to make it more useful, but it could be overwhelming for users to start with a lot of features. We need to find a way to reveal features as users need them.
+
+[click] Then it's about extensibility, [click] to allow the community to enhance the tool and enrich the ecosystem. [click] We should make a plugin system for users to extend it with their needs.
+
+[click] Finally, we should be progressive on breaking changes, [click] to provide middle stages for migration. This is probably the most important one to me in software development. Breaking changes are necessary for software to improve, but how we do that is also crucial. [click] A common practice is to deprecate the old features and provide a warning for users to migrate to the new features. Then we could provide forward/backward compatibility for users to opt-in to the new behavior in legacy versions, or stay on the old behavior in the new versions, for them to migrate at their own pace. And finally, we could remove the old features after a certain period of time. Each of these steps would deserve a major version and should be taken slowly.
+-->
+
+---
+layout: center
+class: 'text-center'
+---
+
+<TipTitle
+  title="Extensible"
+  description="Plugins system. Community driven."
+  number="4"
+/>
+
+<!--
+So we have mentioned a bit about extensibility in the previous slide.
+
+So the fourth tip I would give is [click] to be extensible, [click] to make a plugin system for your tool and allow the community to enhance it.
+-->
+
+---
+layout: center
+class: 'text-center'
+---
+
+<div font-serif text-3em>All Software</div>
+<div text-1.6em text-lime>should provide <span v-mark="1">a Plugin System</span></div>
+
+<!--
+I am going to give a very bold statement here,
+
+that in my opinion,
+
+all software,
+
+[click] should provide some kind of plugin system. (pause)
+-->
+
+---
+layout: center
+class: 'text-center'
+---
+
+<div font-serif text-3.5em mt--10>Scripts <span text-2rem op50>vs</span> Software</div>
+
+<div v-click absolute top-75 left-71 text-orange3 text-1.4em>
+  One-off
+</div>
+
+<div v-click absolute top-75 left-148 text-lime3 text-1.4em>
+  Tools
+</div>
+
+<div v-click absolute left-0 right-0 bottom-20 italic font-serif text-center>
+  "Software is logic that adapts"
+</div>
+
+<!--
+Before I explain it, I wanted to first give my understanding of the definition of the words "Scripts" and "Software".
+
+How do you feel about these words? (pause)
+
+Even though Scripts and Software are technically the same thing under the hood, they are also different when you look at them from the perspective of users.
+
+[click] I would describe Scripts as a one-off tool that you use to solve a specific problem, and most of the time, you throw them away after you use them. They can still be very useful and save you a lot of time, but the code itself is usually not reusable.
+
+[click] Software, on the other hand, is a tool that you use to solve a general problem, and you can use it for a long time. You can have it adapt to different scenarios for others with different needs.
+
+[click] So I would say, Software is logic that adapts. The adaptability gives life to the code we wrote and benefits others in the long run. When we want to build tools for people to use, we would want to try to make our tools less scripts but more software.
+
+Why are we talking about this? I think extensibility is one of the very important ways to make software have more adaptability. For extensibility, we usually mean a plugin system.
+-->
+
+---
+
+# Benefits {.font-serif}
+
+of Having a Plugins System
+
+<div h-15 />
+
+<v-clicks>
+
+- Allow community to build features without being blocked.
+
+- Verify ideas without breaking changes to core.
+
+- Better architecture.
+
+- Maximizing the value of being a tool.
+
+</v-clicks>
+
+<!--
+Talking about the benefits of having a plugin system,
+
+[click] I would say, it allows you to build a community around your tool. And it would give the community power to build extensible features without being blocked by you or the maintainers. This also means it will scale better with the power of the community.
+
+[click] Then, as the author or the maintainer, you can also leverage the plugin system to experiment and verify your ideas without breaking changes to the core. You can implement an experimental feature as an opt-in plugin for people to try it and iterate it freely. Once it's stable enough, you can then consider if you want to merge it to the core, etc.
+
+[click] Then, making a plugin system, especially a powerful one, would also help you design a better architecture for your tool. You can have a more flexible and extensible architecture, which might also be more maintainable in the long run.
+
+[click] Finally, as we mentioned before, having a plugin system would help your tool to be more extensible and cover more use cases, which would benefit more people and maximizing the value.
+-->
+
+---
+layout: center
+class: 'text-center'
+---
+
+<TipTitle
+  title="Make Core Feature Plugins" 
+  description="To verify you have a powerful plugin API."
+  number="4.1"
+/>
+
+<!--
+With that in mind, I would say a good way to build a powerful plugin system is to [click] make your core features as plugins.
+
+[click] This would put you in the position of both API designer and API consumer at the same time, which would help you design a more powerful plugin system.
+-->
+
+---
+
+<div 
+  absolute left-0 right-0 top-0 bottom-0 grid="~ cols-[1fr_max-content_1fr] gap-2" px10 items-center
+  transition-all duration-400
+  :class="$clicks >= 2 ? 'pr-80' : ''"
+>
+  <div text-center>
+    <div relative w-max ma p2 mb4>
+      <div i-twemoji:high-voltage text-4em />
+      <div i-logos-vue absolute text-1.5rem right-0 bottom-0 />
+    </div>
+    <div font-serif text-2rem>Vite v0.x</div>
+    <span text-green>Opinionated Dev Server <b font-bold underline>for Vue</b></span>
+  </div>
+
+  <div i-ph:arrow-fat-lines-right-duotone text-2em op50 v-click />
+
+  <div text-center v-after>
+    <div relative w-max ma p2 mb4>
+      <div i-logos-vitejs text-4em />
+    </div>
+    <div font-serif text-2rem>Vite v2.0+</div>
+    <span text-purple>Next Generation Frontend Tooling</span>
+  </div>
+</div>
+
+ <div absolute right-10 top-42 flex="~ gap-2 col" >
+  <div border="~ green:50 rounded-lg" bg-green:15 px2 text-green flex="~ items-center gap-2" v-click>
+    <div i-logos-vue w-1em />
+    Vue as a plugin
+  </div>
+  <div border="~ blue:50 rounded-lg" bg-blue:15 px2 text-blue flex="~ items-center gap-2" v-click>
+    <div i-logos-react w-1em />
+    React as a plugin
+  </div>
+  <div border="~ red:50 rounded-lg" bg-red:15 px2 text-red flex="~ items-center gap-2" v-click>
+    <div i-logos-svelte-icon w-1em />
+    Svelte as a plugin
+  </div>
+  <div border="~ yellow:50 rounded-lg" bg-yellow:15 px2 text-yellow flex="~ items-center gap-2" v-click>
+    <div i-logos-vitest w-1em />
+    Test runner for Vite
+  </div>
+  <div border="~ gray:50 rounded-lg" bg-gray:15 px2 text-gray flex="~ items-center gap-1" v-click>
+    <div i-logos-nuxt-icon w-1em />
+    <div i-logos-solidjs-icon w-1em />
+    <div i-logos-slidev w-1em />
+    <div i-logos-storybook-icon w-1em />
+    Meta-frameworks...
+  </div>
+  <div border="~ gray:20 rounded-lg" bg-gray:5 px2 text-gray flex="~ items-center gap-2" op50 text-center v-after>
+    <span>...</span>
+  </div>
+</div>
+
+<!--
+Let's take Vite as an example.
+
+I don't know how many of you are familiar with the history of Vite. Vite as of today is almost the default choice for web development for almost any project, but at the very beginning, it was an experiment on development tooling specifically for Vue.
+
+As the idea of having a native-ESM dev server seemed to work pretty well, Evan You started to think that we could have this great dev server experience for other frameworks as well. [click] Starting from Vite v2.0+, Vite became a framework-agnostic frontend tooling that is not bound to Vue anymore. [click] Instead, Evan extracted the hard-coded Vue-specific logic into a plugin, which also helps to ensure Vite has a very powerful plugin system to support complex cases like Vue.
+
+[click] Then we have a plugin to support React, [click] the community built the plugin for Svelte which later became official, [click] then we could have some crazy ideas like running a test runner for Vite with the same plugin pipeline which ends up to be Vitest, [click] and by now we have almost every meta-framework built on top of Vite and sharing the great plugin ecosystem of Vite together.
+
+This is just one of the examples, but we can see that without this move of extracting Vue as a plugin, we wouldn't have all these great tools that empower our daily development.
+-->
+
+---
+layout: center
+class: 'text-center'
+---
+
+<TipTitle
+  title="Work with the Community"
+  description="Work with people, get them engaged, build together."
+  number="5"
+/>
+
+<!--
+Then, the final tip I would give today is [click] to work with the community. Or work with the users, depending on what type of tools you are building.
+
+[click] We can't just build a great tool out of nowhere. We need to work with people, get them engaged, and build together.
+-->
+
+---
+
+<div flex="~ col gap-10 justify-center" w-full h-full px20>
+  <div text-orange flex="~ items-center gap-4" v-click>
+    <div i-ph-user-circle-gear-duotone text-3em />
+    <div flex="~ col">
+      <div text-2xl>Build Your Own Identify</div>
+      <div text-orange2>People need to know who is behind the project.</div>
+    </div>
+  </div>
+  <div text-lime flex="~ items-center gap-4" v-click>
+    <div i-ph:users-duotone text-3em />
+    <div flex="~ col">
+      <div text-2xl>Work with Your Users</div>
+      <div text-lime2>Listen to their feedback and iterate.</div>
+    </div>
+  </div>
+  <div text-violet flex="~ items-center gap-4" v-click>
+    <div i-ph-git-pull-request-duotone text-3em />
+    <div flex="~ col">
+      <div text-2xl>Maintains Good Feedback-loop for Contributors</div>
+      <div text-violet2>Reply and review the PR in time. Keep them engaged. Build your team.</div>
+    </div>
+  </div>
+  <div text-blue flex="~ items-center gap-4" v-click>
+    <div i-ph-globe-duotone text-3em />
+    <div flex="~ col">
+      <div text-2xl>Collaborate with Other Projects/Authors/Maintainers</div>
+      <div text-blue2>Extend the ecosystem by introducing new integrations.</div>
+    </div>
+  </div>
+</div>
+
+<!--
+The first thing I would suggest is to [click] build your own identity. People need to know who is behind the tool, especially in open source. Software as tools is a bit different from physical tools - software evolves and needs maintenance, so knowing and trusting the authors or maintainers behind a certain tool is important for you to get the adoption.
+
+[click] Then, of course, we should work with our users. Listen to their feedback and iterate.
+
+[click] Building a software tool, especially dev tools, is interesting, as your users are usually also developers, meaning they could potentially contribute to the tool themselves. 
+
+Making a good environment for contributions and maintaining a good feedback loop for them is important to get your tool started. For example, like replying to comments or reviewing PRs in time, to make people feel they are part of the community, which potentially you could gather people with the same passion about the tool and maybe build a team to scale the project further.
+
+[click] Finally, we should collaborate with other projects' authors or maintainers, outside of our project. Not only could we extend the ecosystem by introducing new integrations, but we could also learn from each other, spark new ideas, and build a stronger community together.
+-->
+
+---
+
+# Recap
+
+<div grid="~ cols-2 gap-4 gap-y-10" mt10>
+<div>
+  <div op50 mb--2>Tip #1</div>
+  <div font-serif text-1.8em>I Don't Know</div>
+  <div op50>Try and Error; Verify with the users.</div>
+</div>
+
+<div>
+  <div op50 mb--2>Tip #2</div>
+  <div font-serif text-1.8em>Solve your own Problems</div>
+  <div op50>Build from your pain points. Eat your own dogfood.</div>
+</div>
+
+<div>
+  <div op50 mb--2>Tip #3</div>
+  <div font-serif text-1.8em>Progressive!</div>
+  <div op50>Reduce the friction.</div>
+</div>
+
+<div>
+  <div op50 mb--2>Tip #4</div>
+  <div font-serif text-1.8em>Extensible</div>
+  <div op50>Plugins system. Community driven.</div>
+</div>
+
+<div>
+  <div op50 mb--2>Tip #5</div>
+  <div font-serif text-1.8em>Work with the Community</div>
+  <div op50>Work with people, get them engaged, build together.</div>
+</div>
+
+</div>
+
+<!--
+So a quick recap of the tips I gave today.
+
+There are many more things I wanted to go into in more detail, but due to the time limit, I couldn't cover them all.
+
+Reach out to me if you are interested in hearing more about them. You can also find the slides on my website antfu.me afterward.
+-->
+
+
+---
+layout: center
+---
+
+<div text-center text-1.5em italic op75>Anthony's Road to Open Source</div>
+
+<div grid="~ cols-3 gap-6" mt10>
+
+<div>
+<div op50 font-serif italic mb--1>Part I</div>
+<h3><span op75>The Set Theory</span></h3>
+<img src="/part1-the-set-theory.png" rounded-lg shadow-xl border="~ gray/25" mt4 />
+</div>
+
+<div>
+<div op50 font-serif italic mb--1>Part II</div>
+<h3><span op75>The Progressive Path</span></h3>
+<img src="/part2-progressive.png" rounded-lg shadow-xl border="~ gray/25" mt4 />
+</div>
+
+<div>
+<div op50 font-serif italic mb--1>Part III</div>
+<h3><span op75>Yak Shaving</span></h3>
+<img src="/part3-yak-shaving.png" rounded-lg shadow-xl border="~ gray/25" mt4 />
+</div>
+
+</div>
+
+<div mt-14 text-xl text-center>
+
+Recordings on [antfu.me](https://antfu.me)
+
+</div>
+
+<!--
+I also actually gave a few related talks before,
+
+The Set Theory about how we can expand the scopes of our projects; The Progressive path about how we can reduce the friction for people to use our tools. And then Yak Shaving about how to come up with ideas and execute them.  
+
+If you are interested, you can also find the recordings and slides on my website.
+-->
+
+---
+layout: center
+class: 'text-center'
+---
+
+<div font-serif text-2.5em v-click>To Make Tools that People Love</div>
+<div text-2em text-rose v-click>is to Put Love into the Tools We Make 🤍</div>
+
+<!--
+In a word, 
+
+Needless to say, but [click] to make tools that people love,
+
+I think the only true tip is [click] "to put love and great care into the tools we make". (pause)
+
+That's all for my talk today. [click] Thank you! (pause)
+-->
+
+---
+layout: center
+class: 'text-center pb-5'
+---
+
+<h1 font-serif important-text-4em pb8>Thank You!</h1>
+
+Slides can be found on [antfu.me](https://antfu.me)
